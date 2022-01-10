@@ -1,6 +1,6 @@
 ## `day2year.py`:  
 
-Extrae en DHWmax de cada año y devuelve un archivo netCDF con la variable DHWmax 
+Extrae el DHWmax de cada año y devuelve un archivo netCDF con la variable DHWmax. Requiere xarray.  
 
 uso: 
 
