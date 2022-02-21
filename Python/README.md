@@ -9,4 +9,9 @@ uso:
 ---------------------
 
 
+## `clipDS.py`:
+
+Prueba de corte de un xarray dataset usando `rioxarray`. La geometría de prueba es el reloj de arena.
+
+
 
