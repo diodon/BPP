@@ -4,7 +4,7 @@ import xarray as xr
 import rioxarray as rio
 
 
-def clipMap(nc, geometries, type="Polygon", crs=4326):
+def clipMap(nc, geometry, type="Polygon", crs=4326):
     '''
     Clip a xarray datastet or data array providing a list of coordinates that define the vertices of a geometry
     the dataset is opened with the decode_coords="all" argument
@@ -28,3 +28,4 @@ def clipMap(nc, geometries, type="Polygon", crs=4326):
     nc_clip = nc.rio.clip(geometries)
 
     return nc_clip
+
