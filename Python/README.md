@@ -13,5 +13,8 @@ uso:
 
 Prueba de corte de un xarray dataset usando `rioxarray`. La geometría de prueba es el reloj de arena.
 
+## `clipIPCC.py`
+
+Corta los archivos de DHW de acuerdo con los polígonos predetermnados dle IPCC
 
 
