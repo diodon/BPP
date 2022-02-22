@@ -1,7 +1,7 @@
 ## Extract DHWmax by year and save in a yearly file
 import sys
 import xarray as xr
-import pandas as pd
+
 
 def getDHWmax(nc):
     '''
