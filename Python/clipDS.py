@@ -1,28 +1,30 @@
-## clip a dataset using a dictionary of coordinates
+## clip a dataset using a list of coordinates
 import matplotlib.pyplot as plt
 import xarray as xr
 import rioxarray as rio
 
-## read dataset
-nc = xr.open_dataset("Data/test_DHWmax.nc", decode_coords="all")
 
-## this is the hourglass
-geometries = [
-    {
-        'type': 'Polygon',
-        'coordinates': [[[95.097656, -19.47695],
-                         [111.005859, -19.145168],
-                         [93.691406, -37.788081],
-                         [113.730469, -37.71859],
-                         [95.097656, -19.47695]]]
-    }
-]
+def clipMap(nc, geometries, type="Polygon"):
+    '''
+    Clip a xarray datastet or data array providing a list of coordinates that define the vertices of a geometry
+    the dataset is opened with the decode_coords="all" argument
+    depends on rioxarray
+    eklein at ocean-analytics dot com dot au
+    :param nc: xarray dataset
+    :param geometries: list of coordinates pairs
+    :param type: polygon by default
+    :return: clipped dataset to the defined geometry
+    '''
 
-## assign projection. Assuming EPSG:4326
-nc = nc.rio.write_crs(4326)
+    geometries = [
+        {'type': type,
+         'coordinates': [geometry]}]
 
-## clip using geometries
-nc_clip = nc.rio.clip(geometries)
+    ## assign projection. Assuming EPSG:4326
+    nc = nc.rio.write_crs(4326)
 
-## plot
-nc_clip.DHW[0,:,:].plot()
+    ## clip using geometries
+    nc_clip = nc.rio.clip(geometries)
+
+    return nc_clip
+
