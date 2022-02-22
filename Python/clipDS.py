@@ -4,7 +4,7 @@ import xarray as xr
 import rioxarray as rio
 
 
-def clipMap(nc, geometries, type="Polygon"):
+def clipMap(nc, geometries, type="Polygon", crs=4326):
     '''
     Clip a xarray datastet or data array providing a list of coordinates that define the vertices of a geometry
     the dataset is opened with the decode_coords="all" argument
@@ -13,6 +13,7 @@ def clipMap(nc, geometries, type="Polygon"):
     :param nc: xarray dataset
     :param geometries: list of coordinates pairs
     :param type: polygon by default
+    :param crs: projection. EPSG 4326 by default
     :return: clipped dataset to the defined geometry
     '''
 
@@ -20,11 +21,10 @@ def clipMap(nc, geometries, type="Polygon"):
         {'type': type,
          'coordinates': [geometry]}]
 
-    ## assign projection. Assuming EPSG:4326
-    nc = nc.rio.write_crs(4326)
+    ## assign projection.
+    nc = nc.rio.write_crs(crs)
 
     ## clip using geometries
     nc_clip = nc.rio.clip(geometries)
 
     return nc_clip
-
