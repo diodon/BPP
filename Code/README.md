@@ -1,6 +1,6 @@
 # BPP-Code
 
-Bleaching Project Portal. Code only
+Bleaching Prediction Portal. Code only
 
 
 
