@@ -5,16 +5,17 @@ import numpy as np
 
 
 
-def summariseDHW(nc, pandas=False):
+def summariseDHWperYear(nc, varName, pandas=False):
     '''
     Compute summary statistics of DHW per year from a selected region of interest.
     If the data array os the day when DHWmax occurs, the statistics are based on the median
     record dimension is 'time' which is the year
     requires xarray, pandas
     eklein at ocean dash analytics dot com dot au
-    :param nc: data array
+    :param nc: data array of DHWmax[time,lat,lon]
+    :param varName: variable name
     :param pandas: True if dataframe is the output; False returns a xarray dataset
-    :return: pandas table with summary statistics per year
+    :return: pandas table or a dataset with summary statistics per year
     '''
 
     ## compute basics stats along lat lon dimensions
@@ -23,25 +24,23 @@ def summariseDHW(nc, pandas=False):
     DHWmedian = nc.median(dim=['lat', 'lon'], skipna=True)
     DHWmean = nc.mean(dim=['lat', 'lon'], skipna=True)
     DHWstd = nc.std(dim=['lat', 'lon'], skipna=True)
+    DHWq01 = nc.quantile(0.01, dim=['lat', 'lon']).drop_vars('quantile')
     DHWq05 = nc.quantile(0.05, dim=['lat', 'lon']).drop_vars('quantile')
     DHWq95 = nc.quantile(0.95, dim=['lat', 'lon']).drop_vars('quantile')
 
-    ds = xr.Dataset({'DHWmin': DHWmin,
-                     'DHWp05': DHWq05,
-                     'DHWmean': DHWmean,
-                     'DHWmedian': DHWmedian,
-                     'DHWq95': DHWq95,
-                     'DHWmax': DHWmax,
-                     'DHWstd': DHWstd})
+    ds = xr.Dataset({varName + '_min': DHWmin,
+                     varName + '_q01': DHWq01,
+                     varName + '_q05': DHWq05,
+                     varName + '_mean': DHWmean,
+                     varName + '_median': DHWmedian,
+                     varName + '_q95': DHWq95,
+                     varName + '_max': DHWmax,
+                     varName + '_std': DHWstd})
 
     if pandas:
         return ds.to_pandas()
     else:
         return ds
-
-
-
-
 
 
 
