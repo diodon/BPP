@@ -1,4 +1,4 @@
-# Tools for generatin aggregated DHW forecasts
+# Tools for making aggregated DHW forecasts files
 
 ## `day2year.py`:  
 
