@@ -1,8 +1,10 @@
+# Tools for generatin aggregated DHW forecasts
+
 ## `day2year.py`:  
 
-Extrae el DHWmax de cada año y devuelve un archivo netCDF con la variable DHWmax. Requiere xarray.  
+Extract DHWmax for each year. Returns netCDF with DHWmax variable. Requires xarray
 
-uso: 
+use: 
 
 `python3 day2year.py fileName` 
 
@@ -11,13 +13,13 @@ uso:
 
 ## `clipDS.py`:
 
-Prueba de corte de un xarray dataset usando `rioxarray`. La geometría de prueba es el reloj de arena.
+Test for cutting a file using a geometry. Requires rioxarray
 
 
 ------------------------
 
 ## `clipIPCC.py`
 
-Corta los archivos de DHW de acuerdo con los polígonos predetermnados dle IPCC
+Clip DHW files by IPCC areas
 
 
