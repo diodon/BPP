@@ -7,23 +7,17 @@ import xarray as xr
 import numpy as np
 from datetime import datetime
 
-# Add path to run from console
-sys.path.append('/home/eklein/Proyectos/Camille/Code/Python/')
 from tools.DHWtools import *
 
 
 DHWbleach = 4.0
 DHWdead = 8.0
 
-#fileRoot = '/home/data/raw/ensemble/dec22/'
 fileRoot = '/home/eklein/Proyectos/Camille/Data/raw/ssp245_may22/'
 
-#outFileRoot = '/home/data/DHWmax/ensDec22/'
 outFileRoot = '/home/eklein/Proyectos/Camille/Data/DHWmax/ssp245_may22/'
 
 filePrefix = 'ssp245_BCC-CSM2-MR_DHW.nc'
-#filePrefix = sys.argv[1]
-#fileName = os.path.join(fileRoot + filePrefix.split("_")[0], filePrefix)
 fileName = os.path.join(fileRoot + filePrefix)
 print(fileName)
 
